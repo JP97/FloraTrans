@@ -19,20 +19,22 @@ namespace FloraTrans.Controllers
         public ClientsController(FloraTransContext context)
         {
             _context = context;
+            DBInitializer init = new DBInitializer();
+            init.DbInitialize(_context);
         }
 
         // GET: api/Clients
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClient()
         {
-            return await _context.Client.ToListAsync();
+            return await _context.Client.Include(c => c.RentedContainer).Include(c => c.Contact).ToListAsync();
         }
 
         // GET: api/Clients/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Client>> GetClient(int id)
         {
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Client.Include(c => c.Contact).Include(c => c.RentedContainer).FirstAsync(c => c.ClientID == id);
 
             if (client == null)
             {

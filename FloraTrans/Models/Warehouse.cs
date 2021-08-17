@@ -7,7 +7,7 @@ namespace FloraTrans.Models
 {
     public class Warehouse
     {
-        public int ID { get; set; }
+        public int WareHouseID { get; set; }
         public int RentedContainersFromCC { get; set; }
     }
 }

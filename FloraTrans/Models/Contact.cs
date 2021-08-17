@@ -7,7 +7,7 @@ namespace FloraTrans.Models
 {
     public class Contact
     {
-        public int ID { get; set; }
+        public int ContactID { get; set; }
         public string Name { get; set; }
         public string JobTitel { get; set; }
         public string Email { get; set; }

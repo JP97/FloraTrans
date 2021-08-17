@@ -47,7 +47,7 @@ namespace FloraTrans.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWarehouse(int id, Warehouse warehouse)
         {
-            if (id != warehouse.ID)
+            if (id != warehouse.WareHouseID)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace FloraTrans.Controllers
             _context.Warehouse.Add(warehouse);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWarehouse", new { id = warehouse.ID }, warehouse);
+            return CreatedAtAction("GetWarehouse", new { id = warehouse.WareHouseID }, warehouse);
         }
 
         // DELETE: api/Warehouses/5
@@ -102,7 +102,7 @@ namespace FloraTrans.Controllers
 
         private bool WarehouseExists(int id)
         {
-            return _context.Warehouse.Any(e => e.ID == id);
+            return _context.Warehouse.Any(e => e.WareHouseID == id);
         }
     }
 }

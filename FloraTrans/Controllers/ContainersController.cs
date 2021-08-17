@@ -28,6 +28,24 @@ namespace FloraTrans.Controllers
             return await _context.Container.ToListAsync();
         }
 
+        [HttpGet("available")]
+        public async Task<ActionResult<IEnumerable<Container>>> GetAvailableContainer()
+        {
+            return await _context.Container.Where(container => container.Available == true).ToListAsync();
+        }
+
+        [HttpGet("rented")]
+        public async Task<ActionResult<IEnumerable<Container>>> GetRentedContainer()
+        {
+            return await _context.Container.Where(container => container.Available == false).ToListAsync();
+        }
+
+        [HttpGet("lost")]
+        public async Task<ActionResult<IEnumerable<Container>>> GetLostContainer()
+        {
+            return await _context.Container.Where(container => container.Lost == true).ToListAsync();
+        }
+
         // GET: api/Containers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Container>> GetContainer(int id)

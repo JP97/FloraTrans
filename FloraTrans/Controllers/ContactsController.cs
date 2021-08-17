@@ -47,7 +47,7 @@ namespace FloraTrans.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContact(int id, Contact contact)
         {
-            if (id != contact.ID)
+            if (id != contact.ContactID)
             {
                 return BadRequest();
             }
@@ -81,7 +81,7 @@ namespace FloraTrans.Controllers
             _context.Contact.Add(contact);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetContact", new { id = contact.ID }, contact);
+            return CreatedAtAction("GetContact", new { id = contact.ContactID }, contact);
         }
 
         // DELETE: api/Contacts/5
@@ -102,7 +102,7 @@ namespace FloraTrans.Controllers
 
         private bool ContactExists(int id)
         {
-            return _context.Contact.Any(e => e.ID == id);
+            return _context.Contact.Any(e => e.ContactID == id);
         }
     }
 }
